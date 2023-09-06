@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/models/project_model.dart';
 import 'package:flutter_portfolio/utils/info_card.dart';
 import 'package:flutter_portfolio/utils/project_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pdf_render/pdf_render_widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String page = "Home";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,9 +122,9 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(
                           width: 16,
                         ),
-                        const Text(
-                          "Projects",
-                          style: TextStyle(
+                        Text(
+                          page,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w800,
                               fontSize: 24),
@@ -129,64 +132,111 @@ class _HomePageState extends State<HomePage> {
                         const Spacer(),
                         Container(
                           padding: const EdgeInsets.only(
-                              top: 12, bottom: 12, left: 24, right: 24),
+                              top: 12, bottom: 12, left: 48, right: 48),
                           decoration: BoxDecoration(
                               borderRadius: const BorderRadius.only(
                                   bottomLeft: Radius.circular(8),
                                   topRight: Radius.circular(8)),
-                              color: Colors.white.withOpacity(0.4)),
-                          child: const Row(
+                              color: Colors.white.withOpacity(0.25)),
+                          child: Row(
                             children: [
-                              Text(
-                                "Resume",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 16),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    page = "Home";
+                                  });
+                                },
+                                child: const Text(
+                                  "Home",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w200,
+                                      fontSize: 16),
+                                ),
                               ),
-                              SizedBox(
-                                width: 24,
+                              const SizedBox(
+                                width: 48,
                               ),
-                              Text(
-                                "Projects",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 16),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    page = "Resume";
+                                  });
+                                },
+                                child: const Text(
+                                  "Resume",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w200,
+                                      fontSize: 16),
+                                ),
                               ),
-                              SizedBox(
-                                width: 24,
+                              const SizedBox(
+                                width: 48,
                               ),
-                              Text(
-                                "Contacts",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 16),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    page = "Projects";
+                                  });
+                                },
+                                child: const Text(
+                                  "Projects",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w200,
+                                      fontSize: 16),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 48,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    page = "Contact";
+                                  });
+                                },
+                                child: const Text(
+                                  "Contact",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w200,
+                                      fontSize: 16),
+                                ),
                               ),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    // ProjectCard(
-                    //     title: "Project - 1",
-                    //     description: "hey first project",
-                    //     url: "url"),
-                    Expanded(
-                      child: GridView.builder(
-                        itemCount: 13,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3, childAspectRatio: 1.3),
-                        itemBuilder: (context, index) {
-                          return ProjectCard(
-                              title: "Project - 1",
-                              description: "hey first project",
-                              url: "url");
-                        },
-                      ),
-                    )
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    page == "Projects"
+                        ? Expanded(
+                            child: GridView.builder(
+                              itemCount: projectList.length,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3, childAspectRatio: 1.3),
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ProjectCard(
+                                      title: projectList[index].name,
+                                      description:
+                                          projectList[index].description,
+                                      url: projectList[index].link),
+                                );
+                              },
+                            ),
+                          )
+                        : Container(),
+                    page == "Resume"
+                        ? Expanded(
+                            child: PdfViewer.openAsset('/pdf/resume.pdf'))
+                        : Container()
                   ]),
                 ),
               ),
