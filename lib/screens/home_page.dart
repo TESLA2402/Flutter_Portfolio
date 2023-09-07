@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/constants/color.dart';
 import 'package:flutter_portfolio/models/project_model.dart';
 import 'package:flutter_portfolio/utils/info_card.dart';
 import 'package:flutter_portfolio/utils/project_card.dart';
@@ -31,15 +33,18 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.white.withOpacity(0.4)),
-                      child: Image.asset(
-                        "/gif/profile.gif",
-                        height: 125.0,
-                        width: 125.0,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        constraints: const BoxConstraints(
+                          maxWidth: 200,
+                          maxHeight: 200,
+                        ),
+                        child: Image.asset(
+                          kIsWeb
+                              ? "assets/gif/programmer.gif"
+                              : "/gif/programmer.gif",
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -52,7 +57,14 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.w400,
                           fontSize: 24),
                     ),
-                    const Divider(),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 6,
+                      child: Divider(
+                        color: Colors.white.withOpacity(0.25),
+                        thickness: 2,
+                        height: 48,
+                      ),
+                    ),
                     const InfoCard(
                         title: "EMAIL",
                         subtitle: "lakshay6447@gmail.com",
@@ -146,13 +158,29 @@ class _HomePageState extends State<HomePage> {
                                     page = "Home";
                                   });
                                 },
-                                child: const Text(
-                                  "Home",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w200,
-                                      fontSize: 16),
-                                ),
+                                child: page == "Home"
+                                    ? ShaderMask(
+                                        blendMode: BlendMode.srcIn,
+                                        shaderCallback: (bounds) =>
+                                            AppColors.gradient.createShader(
+                                          Rect.fromLTWH(0, 0, bounds.width,
+                                              bounds.height),
+                                        ),
+                                        child: const Text(
+                                          "Home",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w200,
+                                              fontSize: 16),
+                                        ),
+                                      )
+                                    : const Text(
+                                        "Home",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w200,
+                                            fontSize: 16),
+                                      ),
                               ),
                               const SizedBox(
                                 width: 48,
@@ -163,13 +191,29 @@ class _HomePageState extends State<HomePage> {
                                     page = "Resume";
                                   });
                                 },
-                                child: const Text(
-                                  "Resume",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w200,
-                                      fontSize: 16),
-                                ),
+                                child: page == "Resume"
+                                    ? ShaderMask(
+                                        blendMode: BlendMode.srcIn,
+                                        shaderCallback: (bounds) =>
+                                            AppColors.gradient.createShader(
+                                          Rect.fromLTWH(0, 0, bounds.width,
+                                              bounds.height),
+                                        ),
+                                        child: const Text(
+                                          "Resume",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w200,
+                                              fontSize: 16),
+                                        ),
+                                      )
+                                    : const Text(
+                                        "Resume",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w200,
+                                            fontSize: 16),
+                                      ),
                               ),
                               const SizedBox(
                                 width: 48,
@@ -180,13 +224,29 @@ class _HomePageState extends State<HomePage> {
                                     page = "Projects";
                                   });
                                 },
-                                child: const Text(
-                                  "Projects",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w200,
-                                      fontSize: 16),
-                                ),
+                                child: page == "Projects"
+                                    ? ShaderMask(
+                                        blendMode: BlendMode.srcIn,
+                                        shaderCallback: (bounds) =>
+                                            AppColors.gradient.createShader(
+                                          Rect.fromLTWH(0, 0, bounds.width,
+                                              bounds.height),
+                                        ),
+                                        child: const Text(
+                                          "Projects",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w200,
+                                              fontSize: 16),
+                                        ),
+                                      )
+                                    : const Text(
+                                        "Projects",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w200,
+                                            fontSize: 16),
+                                      ),
                               ),
                               const SizedBox(
                                 width: 48,
@@ -197,13 +257,29 @@ class _HomePageState extends State<HomePage> {
                                     page = "Contact";
                                   });
                                 },
-                                child: const Text(
-                                  "Contact",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w200,
-                                      fontSize: 16),
-                                ),
+                                child: page == "Contact"
+                                    ? ShaderMask(
+                                        blendMode: BlendMode.srcIn,
+                                        shaderCallback: (bounds) =>
+                                            AppColors.gradient.createShader(
+                                          Rect.fromLTWH(0, 0, bounds.width,
+                                              bounds.height),
+                                        ),
+                                        child: const Text(
+                                          "Contact",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w200,
+                                              fontSize: 16),
+                                        ),
+                                      )
+                                    : const Text(
+                                        "Contact",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w200,
+                                            fontSize: 16),
+                                      ),
                               ),
                             ],
                           ),
@@ -235,7 +311,9 @@ class _HomePageState extends State<HomePage> {
                         : Container(),
                     page == "Resume"
                         ? Expanded(
-                            child: PdfViewer.openAsset('/pdf/resume.pdf'))
+                            child: PdfViewer.openAsset(kIsWeb
+                                ? 'assets/pdf/resume.pdf'
+                                : '/pdf/resume.pdf'))
                         : Container()
                   ]),
                 ),
