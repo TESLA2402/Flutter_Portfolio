@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/constants/color.dart';
+import 'package:flutter_portfolio/services/launcher_services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCard extends StatelessWidget {
   final String title;
@@ -15,9 +15,10 @@ class ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Launcher launch = Launcher();
     return GestureDetector(
       onTap: () {
-        _launchUrl(url);
+        launch.openSocials(url);
       },
       child: Container(
         padding: const EdgeInsets.all(8),
@@ -68,11 +69,5 @@ class ProjectCard extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-Future<void> _launchUrl(String url) async {
-  if (!await launchUrl(Uri.parse(url))) {
-    throw Exception('Could not launch $url');
   }
 }
