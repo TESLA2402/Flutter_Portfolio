@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/constants/color.dart';
 import 'package:flutter_portfolio/models/project_model.dart';
+import 'package:flutter_portfolio/screens/contact/contact_page.dart';
 import 'package:flutter_portfolio/screens/resume/resume_page.dart';
 import 'package:flutter_portfolio/utils/info_card.dart';
 import 'package:flutter_portfolio/utils/project_card.dart';
@@ -15,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String page = "Home";
+  String page = "Contact";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         child: Image.asset(
                           kReleaseMode
-                              ? "assets/assets/gif/programmer.gif"
+                              ? "assets/gif/programmer.gif"
                               : "/gif/programmer.gif",
                         ),
                       ),
@@ -309,7 +310,8 @@ class _HomePageState extends State<HomePage> {
                             ),
                           )
                         : Container(),
-                    page == "Resume" ? const ResumePage() : Container()
+                    page == "Resume" ? const ResumePage() : Container(),
+                    page == "Contact" ? const ContactPage() : Container(),
                   ]),
                 ),
               ),

@@ -14,6 +14,10 @@ flutter_web_plugins
 3.0
 file:///Applications/flutter/packages/flutter_web_plugins/
 file:///Applications/flutter/packages/flutter_web_plugins/lib/
+animated_text_kit
+2.17
+file:///Users/lakshayahlawat/.pub-cache/hosted/pub.dev/animated_text_kit-4.2.2/
+file:///Users/lakshayahlawat/.pub-cache/hosted/pub.dev/animated_text_kit-4.2.2/lib/
 async
 2.18
 file:///Users/lakshayahlawat/.pub-cache/hosted/pub.dev/async-2.11.0/

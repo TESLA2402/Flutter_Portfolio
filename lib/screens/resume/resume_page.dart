@@ -9,6 +9,6 @@ class ResumePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: PdfViewer.openAsset(
-            kReleaseMode ? 'assets/assets/pdf/resume.pdf' : '/pdf/resume.pdf'));
+            kReleaseMode ? 'assets/pdf/resume.pdf' : '/pdf/resume.pdf'));
   }
 }
