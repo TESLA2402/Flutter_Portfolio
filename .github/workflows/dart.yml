@@ -50,7 +50,9 @@ jobs:
           git config --global user.name "TESLA2402"
           cd deployment
           git init
-          git remote add origin https://github.com/TESLA2402/Portfolio.git
+          # SSH URL for the deployment repository
+          git remote add origin git@github.com:TESLA2402/Portfolio.git
+
           git checkout -b main  # Or the branch where you want to deploy
           git add .
           git commit -m "Deploy latest build"
