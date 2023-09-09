@@ -49,7 +49,9 @@ jobs:
           
           cd deployment
           git init
-          git remote add origin https://github.com/TESLA2402/Portfolio.git
+          # git remote add origin https://github.com/TESLA2402/Portfolio.git
+          git remote add origin https://${{ secrets.GITHUB_PAT }}@github.com/TESLA2402/Portfolio.git
+
           git config --global user.email "lakshay6447@gmail.com"
           git config --global user.name "TESLA2402"
           git checkout -b main  # Or the branch where you want to deploy
