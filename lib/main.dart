@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/screens/home_page.dart';
+import 'package:flutter_portfolio/screens/main_page.dart';
 import 'package:flutter_portfolio/utils/web.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primaryColor: Colors.black,
       ),
-      home: const HomePage(),
+      home: const MainPage(),
     );
   }
 }

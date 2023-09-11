@@ -1,22 +1,20 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/constants/color.dart';
-import 'package:flutter_portfolio/models/project_model.dart';
 import 'package:flutter_portfolio/screens/contact/contact_page.dart';
+import 'package:flutter_portfolio/screens/home/home_page.dart';
+import 'package:flutter_portfolio/screens/project/project_screen.dart';
 import 'package:flutter_portfolio/screens/resume/resume_page.dart';
-import 'package:flutter_portfolio/utils/info_card.dart';
-import 'package:flutter_portfolio/utils/project_card.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_portfolio/utils/side_info_card.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  String page = "Contact";
+class _MainPageState extends State<MainPage> {
+  String page = "Home";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,99 +24,7 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.white.withOpacity(0.2)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Container(
-                        constraints: const BoxConstraints(
-                          maxWidth: 200,
-                          maxHeight: 200,
-                        ),
-                        child: Image.asset(
-                          kReleaseMode
-                              ? "assets/gif/programmer.gif"
-                              : "/gif/programmer.gif",
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    const Text(
-                      "Lakshay Ahlawat",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 24),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 6,
-                      child: Divider(
-                        color: Colors.white.withOpacity(0.25),
-                        thickness: 2,
-                        height: 48,
-                      ),
-                    ),
-                    const InfoCard(
-                        title: "EMAIL",
-                        subtitle: "lakshay6447@gmail.com",
-                        icon: Icons.email_outlined),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    const InfoCard(
-                        title: "PHONE",
-                        subtitle: "+91 8685818767",
-                        icon: Icons.phone_android_outlined),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    const InfoCard(
-                        title: "LOCATION",
-                        subtitle: "IIT Guwahati",
-                        icon: Icons.location_city),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    const InfoCard(
-                        title: "GITHUB",
-                        subtitle: "TESLA2402",
-                        icon: Icons.info_outline),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    const Row(
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.github,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Icon(
-                          FontAwesomeIcons.twitter,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Icon(
-                          FontAwesomeIcons.instagram,
-                          color: Colors.white,
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
+              const SideInfoCard(),
               const SizedBox(
                 width: 8,
               ),
@@ -290,26 +196,8 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 24,
                     ),
-                    page == "Projects"
-                        ? Expanded(
-                            child: GridView.builder(
-                              itemCount: projectList.length,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3, childAspectRatio: 1.3),
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: ProjectCard(
-                                      title: projectList[index].name,
-                                      description:
-                                          projectList[index].description,
-                                      url: projectList[index].link),
-                                );
-                              },
-                            ),
-                          )
-                        : Container(),
+                    page == "Projects" ? const ProjectScreen() : Container(),
+                    page == "Home" ? HomePage() : Container(),
                     page == "Resume" ? const ResumePage() : Container(),
                     page == "Contact" ? const ContactPage() : Container(),
                   ]),
