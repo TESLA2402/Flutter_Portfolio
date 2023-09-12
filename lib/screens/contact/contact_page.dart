@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/constants/color.dart';
 import 'package:flutter_portfolio/constants/typography.dart';
+import 'package:flutter_portfolio/models/profile_model.dart';
 import 'package:flutter_portfolio/services/launcher_services.dart';
 import 'package:flutter_portfolio/utils/info_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -54,18 +55,25 @@ class _ContactPageState extends State<ContactPage> {
         const SizedBox(
           height: 16,
         ),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconWidget(icon: FontAwesomeIcons.github),
-            SizedBox(
+            IconWidget(
+                icon: FontAwesomeIcons.github, url: personalInfo.urlGithub),
+            const SizedBox(
               width: 8,
             ),
-            IconWidget(icon: FontAwesomeIcons.linkedin),
-            SizedBox(
+            IconWidget(
+              icon: FontAwesomeIcons.linkedin,
+              url: personalInfo.urlLinkedIn,
+            ),
+            const SizedBox(
               width: 8,
             ),
-            IconWidget(icon: FontAwesomeIcons.twitter),
+            IconWidget(
+              icon: FontAwesomeIcons.twitter,
+              url: personalInfo.urlTwitter,
+            ),
           ],
         ),
         Padding(

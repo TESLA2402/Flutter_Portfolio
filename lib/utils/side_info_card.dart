@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/models/profile_model.dart';
 import 'package:flutter_portfolio/utils/info_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -33,9 +34,9 @@ class SideInfoCard extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          const Text(
-            "Lakshay Ahlawat",
-            style: TextStyle(
+          Text(
+            personalInfo.name,
+            style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.w400, fontSize: 24),
           ),
           SizedBox(
@@ -46,29 +47,31 @@ class SideInfoCard extends StatelessWidget {
               height: 48,
             ),
           ),
-          const InfoCard(
+          InfoCard(
               title: "EMAIL",
-              subtitle: "lakshay6447@gmail.com",
+              subtitle: personalInfo.email,
               icon: Icons.email_outlined),
           const SizedBox(
             height: 24,
           ),
-          const InfoCard(
+          InfoCard(
               title: "PHONE",
-              subtitle: "+91 8685818767",
+              subtitle: "+91 ${personalInfo.mobile}",
               icon: Icons.phone_android_outlined),
           const SizedBox(
             height: 24,
           ),
-          const InfoCard(
+          InfoCard(
               title: "LOCATION",
-              subtitle: "IIT Guwahati",
+              subtitle: personalInfo.location,
               icon: Icons.location_city),
           const SizedBox(
             height: 24,
           ),
-          const InfoCard(
-              title: "GITHUB", subtitle: "TESLA2402", icon: Icons.info_outline),
+          InfoCard(
+              title: "GITHUB",
+              subtitle: personalInfo.githubUsername,
+              icon: Icons.info_outline),
           const SizedBox(
             height: 24,
           ),

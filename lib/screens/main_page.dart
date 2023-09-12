@@ -197,7 +197,7 @@ class _MainPageState extends State<MainPage> {
                       height: 24,
                     ),
                     page == "Projects" ? const ProjectScreen() : Container(),
-                    page == "Home" ? HomePage() : Container(),
+                    page == "Home" ? const HomePage() : Container(),
                     page == "Resume" ? const ResumePage() : Container(),
                     page == "Contact" ? const ContactPage() : Container(),
                   ]),
