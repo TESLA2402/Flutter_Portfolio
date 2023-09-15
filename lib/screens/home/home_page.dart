@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/constants/color.dart';
 import 'package:flutter_portfolio/models/profile_model.dart';
@@ -19,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   final String quoteURL = "https://api.quotable.io/random?maxLength=50";
   String quote = 'life is about timing';
   String author = 'carl lewis';
+  @override
   void initState() {
     super.initState();
     generateQuote();
