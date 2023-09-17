@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/constants/color.dart';
 import 'package:flutter_portfolio/models/profile_model.dart';
 import 'package:flutter_portfolio/utils/quote_widget.dart';
+import 'package:flutter_portfolio/utils/tag_card.dart';
 import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
@@ -116,13 +117,59 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                ),
+                Container(
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.black.withOpacity(0.8),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Colors.white,
+                            spreadRadius: 0,
+                            blurRadius: 5,
+                            blurStyle: BlurStyle.solid)
+                      ],
+                    ),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Skills",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 32.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Canterbury',
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Wrap(direction: Axis.horizontal, children: [
+                              for (int i = 0;
+                                  i < personalInfo.skills.length;
+                                  i++)
+                                Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: ProjectTagCard(
+                                      tagName:
+                                          personalInfo.skills[i].toLowerCase()),
+                                )
+                            ]),
+                          )
+                        ]))
               ],
             ),
           ),
           const Spacer(),
           const Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               // ClipRRect(
               //   borderRadius: BorderRadius.circular(8),

@@ -7,6 +7,7 @@ class PersonalInfo {
   final String mobile;
   final String location;
   final String githubUsername;
+  final List<String> skills;
   PersonalInfo(
       {required this.name,
       required this.email,
@@ -15,7 +16,8 @@ class PersonalInfo {
       required this.urlTwitter,
       required this.mobile,
       required this.githubUsername,
-      required this.location});
+      required this.location,
+      required this.skills});
 }
 
 PersonalInfo personalInfo = PersonalInfo(
@@ -26,4 +28,26 @@ PersonalInfo personalInfo = PersonalInfo(
     urlTwitter: "link",
     githubUsername: 'TESLA2402',
     location: "IIT Guwahati",
-    mobile: '8685818767');
+    mobile: '8685818767',
+    skills: [
+      "C",
+      "C++",
+      "Dart",
+      "Golang",
+      "Rust",
+      "Python",
+      "HTML",
+      "CSS",
+      "Flutter",
+      "TypeScript",
+      "JavaScript",
+      "NodeJS",
+      "ExpressJS",
+      "NextJs",
+      "Tauri",
+      "Google Firebase",
+      "Supabase",
+      "SQLite",
+      "MySQL",
+      "Git",
+    ]);
