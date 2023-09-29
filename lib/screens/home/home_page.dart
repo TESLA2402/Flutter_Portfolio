@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/constants/color.dart';
 import 'package:flutter_portfolio/models/profile_model.dart';
 import 'package:flutter_portfolio/utils/quote_widget.dart';
 import 'package:flutter_portfolio/utils/tag_card.dart';
 import 'package:http/http.dart' as http;
+import 'package:responsive_framework/responsive_framework.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,6 +40,9 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
             alignment: Alignment.topLeft,
@@ -109,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                             speed: const Duration(milliseconds: 100),
                           ),
                         ],
-                        totalRepeatCount: 4,
+                        totalRepeatCount: 12,
                         pause: const Duration(milliseconds: 1000),
                         displayFullTextOnTap: true,
                         stopPauseOnTap: true,
@@ -149,7 +154,9 @@ class _HomePageState extends State<HomePage> {
                             height: 8,
                           ),
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.3,
+                            width: ResponsiveBreakpoints.of(context).isMobile
+                                ? MediaQuery.of(context).size.width * 0.65
+                                : MediaQuery.of(context).size.width * 0.3,
                             child: Wrap(direction: Axis.horizontal, children: [
                               for (int i = 0;
                                   i < personalInfo.skills.length;
@@ -167,30 +174,31 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const Spacer(),
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              // ClipRRect(
-              //   borderRadius: BorderRadius.circular(8),
-              //   child: Container(
-              //     constraints: BoxConstraints(
-              //       maxWidth: MediaQuery.of(context).size.width * 0.3,
-              //       maxHeight: MediaQuery.of(context).size.height * 0.4,
-              //     ),
-              //     child: Image.asset(
-              //       kReleaseMode
-              //           ? "assets/gif/profile.gif"
-              //           : "/gif/profile.gif",
-              //     ),
-              //   ),
-              // ),
-              // const SizedBox(
-              //   height: 8,
-              // ),
-              Align(alignment: Alignment.bottomRight, child: QuoteWidget()),
-            ],
-          ),
+          if (!ResponsiveBreakpoints.of(context).isMobile)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * 0.3,
+                      maxHeight: MediaQuery.of(context).size.height * 0.4,
+                    ),
+                    child: Image.asset(
+                      kReleaseMode
+                          ? "assets/gif/profile.gif"
+                          : "/gif/profile.gif",
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.02,
+                ),
+                const Align(alignment: Alignment.center, child: QuoteWidget()),
+              ],
+            ),
         ],
       ),
     );

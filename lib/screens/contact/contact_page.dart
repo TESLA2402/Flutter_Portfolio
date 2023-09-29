@@ -6,6 +6,7 @@ import 'package:flutter_portfolio/models/profile_model.dart';
 import 'package:flutter_portfolio/services/launcher_services.dart';
 import 'package:flutter_portfolio/utils/info_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
@@ -92,7 +93,9 @@ class _ContactPageState extends State<ContactPage> {
               ],
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: ResponsiveBreakpoints.of(context).isMobile
+                  ? CrossAxisAlignment.center
+                  : CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -111,7 +114,9 @@ class _ContactPageState extends State<ContactPage> {
                     child: Row(
                       children: [
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
+                          width: ResponsiveBreakpoints.of(context).isMobile
+                              ? MediaQuery.of(context).size.width * 0.5
+                              : MediaQuery.of(context).size.width * 0.3,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -317,72 +322,75 @@ class _ContactPageState extends State<ContactPage> {
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Message",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 16),
-                              ),
-                              TextFormField(
-                                controller: _messageController,
-                                validator: (String? value) {
-                                  if (value!.trim().isEmpty) {
-                                    return 'Please Enter Message';
-                                  }
-
-                                  return null;
-                                },
-                                maxLines: 9,
-                                keyboardType: TextInputType.name,
-                                decoration: InputDecoration(
-                                  alignLabelWithHint: true,
-                                  hintText: 'Your Messsage..',
-                                  filled: true,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  disabledBorder: null,
-                                  errorBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
-                                          width: 2,
-                                          color: AppColors.error[500]!)),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
-                                          width: 2,
-                                          color: AppColors.error[500]!)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
-                                          width: 1.5,
-                                          color: AppColors.gray[200]!)),
-                                  fillColor: AppColors.gray[100],
-                                  hintStyle: AppTypography.textMd.copyWith(
-                                      color: AppColors.gray[500], fontSize: 16),
-                                  helperStyle: AppTypography.textSm
-                                      .copyWith(color: AppColors.gray[400]),
-                                  errorStyle: AppTypography.textSm
-                                      .copyWith(color: AppColors.error[400]),
-                                  iconColor: AppColors.gray[400],
-                                  floatingLabelBehavior:
-                                      FloatingLabelBehavior.auto,
-                                  labelStyle: AppTypography.textSm.copyWith(
-                                      color: AppColors.gray[600],
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                            ],
+                        if (!ResponsiveBreakpoints.of(context).isMobile)
+                          const SizedBox(
+                            width: 16,
                           ),
-                        ),
+                        if (!ResponsiveBreakpoints.of(context).isMobile)
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "Message",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w200,
+                                      fontSize: 16),
+                                ),
+                                TextFormField(
+                                  controller: _messageController,
+                                  validator: (String? value) {
+                                    if (value!.trim().isEmpty) {
+                                      return 'Please Enter Message';
+                                    }
+
+                                    return null;
+                                  },
+                                  maxLines: 9,
+                                  keyboardType: TextInputType.name,
+                                  decoration: InputDecoration(
+                                    alignLabelWithHint: true,
+                                    hintText: 'Your Messsage..',
+                                    filled: true,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    disabledBorder: null,
+                                    errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                            width: 2,
+                                            color: AppColors.error[500]!)),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                            width: 2,
+                                            color: AppColors.error[500]!)),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                            width: 1.5,
+                                            color: AppColors.gray[200]!)),
+                                    fillColor: AppColors.gray[100],
+                                    hintStyle: AppTypography.textMd.copyWith(
+                                        color: AppColors.gray[500],
+                                        fontSize: 16),
+                                    helperStyle: AppTypography.textSm
+                                        .copyWith(color: AppColors.gray[400]),
+                                    errorStyle: AppTypography.textSm
+                                        .copyWith(color: AppColors.error[400]),
+                                    iconColor: AppColors.gray[400],
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.auto,
+                                    labelStyle: AppTypography.textSm.copyWith(
+                                        color: AppColors.gray[600],
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                       ],
                     )),
                 const SizedBox(
@@ -391,7 +399,9 @@ class _ContactPageState extends State<ContactPage> {
                 Center(
                     child: Container(
                   height: 48,
-                  width: MediaQuery.of(context).size.width * 0.2,
+                  width: ResponsiveBreakpoints.of(context).isMobile
+                      ? MediaQuery.of(context).size.width * 0.5
+                      : MediaQuery.of(context).size.width * 0.2,
                   decoration: BoxDecoration(
                       gradient: AppColors.gradient,
                       borderRadius: BorderRadius.circular(12)),

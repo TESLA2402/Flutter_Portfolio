@@ -62,5 +62,5 @@ List<Project> projectList = [
       image: "image",
       link: "https://github.com/TESLA2402/chatapp",
       stars: 2,
-      tags: ["flutter", "firebase"])
+      tags: ["flutter", "firebase"]),
 ];

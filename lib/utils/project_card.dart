@@ -27,6 +27,7 @@ class ProjectCard extends StatelessWidget {
           launch.openSocials(url);
         },
         child: Container(
+          height: MediaQuery.of(context).size.height * 0.27,
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
@@ -39,58 +40,61 @@ class ProjectCard extends StatelessWidget {
                   blurStyle: BlurStyle.solid)
             ],
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  ShaderMask(
-                    blendMode: BlendMode.srcIn,
-                    shaderCallback: (bounds) => AppColors.gradient.createShader(
-                      Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (bounds) =>
+                          AppColors.gradient.createShader(
+                        Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                      ),
+                      child: const Icon(
+                        FontAwesomeIcons.bookBookmark,
+                        size: 20,
+                      ),
                     ),
-                    child: const Icon(
-                      FontAwesomeIcons.bookBookmark,
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Text(title,
+                        style: const TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w200,
+                            fontSize: 16)),
+                    const Spacer(),
+                    const Icon(
+                      FontAwesomeIcons.github,
                       size: 20,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Text(title,
-                      style: const TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 16)),
-                  const Spacer(),
-                  const Icon(
-                    FontAwesomeIcons.github,
-                    size: 20,
-                    color: Colors.white,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(description,
-                  maxLines: 3,
-                  style: const TextStyle(
-                      overflow: TextOverflow.fade,
                       color: Colors.white,
-                      fontWeight: FontWeight.w200,
-                      fontSize: 16)),
-              const SizedBox(
-                height: 12,
-              ),
-              Wrap(direction: Axis.horizontal, children: [
-                for (int i = 0; i < tags.length; i++)
-                  Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: ProjectTagCard(tagName: tags[i].toLowerCase()),
-                  )
-              ])
-            ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(description,
+                    maxLines: 3,
+                    style: const TextStyle(
+                        overflow: TextOverflow.fade,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w200,
+                        fontSize: 16)),
+                const SizedBox(
+                  height: 12,
+                ),
+                Wrap(direction: Axis.horizontal, children: [
+                  for (int i = 0; i < tags.length; i++)
+                    Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: ProjectTagCard(tagName: tags[i].toLowerCase()),
+                    )
+                ])
+              ],
+            ),
           ),
         ),
       ),

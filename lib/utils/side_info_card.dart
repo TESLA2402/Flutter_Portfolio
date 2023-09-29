@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/models/profile_model.dart';
 import 'package:flutter_portfolio/utils/info_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class SideInfoCard extends StatelessWidget {
   const SideInfoCard({super.key});
@@ -21,8 +22,12 @@ class SideInfoCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: Container(
               constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.3,
-                maxHeight: MediaQuery.of(context).size.height * 0.25,
+                maxWidth: ResponsiveBreakpoints.of(context).isMobile
+                    ? MediaQuery.of(context).size.width
+                    : MediaQuery.of(context).size.width * 0.3,
+                maxHeight: ResponsiveBreakpoints.of(context).isMobile
+                    ? MediaQuery.of(context).size.height
+                    : MediaQuery.of(context).size.height * 0.25,
               ),
               child: Image.asset(
                 kReleaseMode
@@ -40,7 +45,9 @@ class SideInfoCard extends StatelessWidget {
                 color: Colors.white, fontWeight: FontWeight.w400, fontSize: 24),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width / 6,
+            width: ResponsiveBreakpoints.of(context).isMobile
+                ? MediaQuery.of(context).size.width
+                : MediaQuery.of(context).size.width / 6,
             child: Divider(
               color: Colors.white.withOpacity(0.25),
               thickness: 2,
@@ -76,6 +83,7 @@ class SideInfoCard extends StatelessWidget {
             height: 24,
           ),
           const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 FontAwesomeIcons.github,
