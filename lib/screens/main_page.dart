@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/constants/color.dart';
+import 'package:flutter_portfolio/models/profile_model.dart';
 import 'package:flutter_portfolio/screens/contact/contact_page.dart';
 import 'package:flutter_portfolio/screens/home/home_page.dart';
 import 'package:flutter_portfolio/screens/project/project_screen.dart';
@@ -163,7 +164,7 @@ class _MainPageState extends State<MainPage> {
                                     ? GestureDetector(
                                         onTap: () {
                                           launcher.openSocials(
-                                              'https://drive.google.com/drive/u/0/folders/1Ws4ZUW5Ze5jyYiwSOXdnMHz5_LSIKcY6');
+                                              personalInfo.resumeLink);
                                         },
                                         child: Container(
                                           padding: const EdgeInsets.only(

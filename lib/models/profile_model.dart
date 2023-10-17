@@ -7,9 +7,11 @@ class PersonalInfo {
   final String mobile;
   final String location;
   final String githubUsername;
+  final String resumeLink;
   final List<String> skills;
   PersonalInfo(
       {required this.name,
+      required this.resumeLink,
       required this.email,
       required this.urlGithub,
       required this.urlLinkedIn,
@@ -26,6 +28,8 @@ PersonalInfo personalInfo = PersonalInfo(
     urlGithub: "https://github.com/TESLA2402",
     urlLinkedIn: "https://www.linkedin.com/in/lakshay6447/",
     urlTwitter: "link",
+    resumeLink:
+        "https://drive.google.com/file/d/1Z4CBCxlHlYesy7nknOpaPMLmDFs9CVQ4/view?usp=share_link",
     githubUsername: 'TESLA2402',
     location: "IIT Guwahati",
     mobile: '8685818767',
