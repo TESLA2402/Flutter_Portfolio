@@ -29,7 +29,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primaryColor: Colors.black,
       ),
-      home: const MainPage(),
+      home: SingleChildScrollView(
+        child: SizedBox(
+            height: MediaQuery.of(context).size.height * 1.1,
+            child: const SelectionArea(child: MainPage())),
+      ),
     );
   }
 }

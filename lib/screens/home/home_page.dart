@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/constants/color.dart';
 import 'package:flutter_portfolio/models/profile_model.dart';
@@ -175,28 +174,28 @@ class _HomePageState extends State<HomePage> {
           ),
           const Spacer(),
           if (!ResponsiveBreakpoints.of(context).isMobile)
-            Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Container(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.3,
-                      maxHeight: MediaQuery.of(context).size.height * 0.4,
-                    ),
-                    child: Image.asset(
-                      kReleaseMode
-                          ? "assets/gif/profile.gif"
-                          : "/gif/profile.gif",
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.02,
-                ),
-                const Align(alignment: Alignment.center, child: QuoteWidget()),
+                // ClipRRect(
+                //   borderRadius: BorderRadius.circular(8),
+                //   child: Container(
+                //     constraints: BoxConstraints(
+                //       maxWidth: MediaQuery.of(context).size.width * 0.3,
+                //       maxHeight: MediaQuery.of(context).size.height * 0.4,
+                //     ),
+                //     child: Image.asset(
+                //       kReleaseMode
+                //           ? "assets/gif/profile.gif"
+                //           : "/gif/profile.gif",
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: MediaQuery.of(context).size.width * 0.02,
+                // ),
+                Align(alignment: Alignment.center, child: QuoteWidget()),
               ],
             ),
         ],
