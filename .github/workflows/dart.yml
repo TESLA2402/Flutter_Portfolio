@@ -67,6 +67,7 @@ jobs:
       #     rm -rf deployment  # Clean up the temporary deployment directory
   deploy:
     name: Deploy Web Build
+    permissions: write-all
     needs: build
     runs-on: ubuntu-latest
 
