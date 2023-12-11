@@ -17,6 +17,7 @@ on:
 jobs:
   build:
     name: Create Web Build
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
