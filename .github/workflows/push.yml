@@ -1,0 +1,55 @@
+
+name: Push
+
+on:
+  push:
+    branches:  [ "main" ]
+
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+      name: Re-Create Web Build
+      runs-on: ubuntu-latest
+      steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-java@v3
+              with:
+                distribution: 'zulu'
+                java-version: "12.x"
+                cache: gradle
+            - uses: subosito/flutter-action@v2
+              with:
+                channel: 'stable'
+                cache: true
+            
+            - name: Get dependencies
+              run: flutter pub get
+      
+            - name: Start Web Release Build
+              run: flutter build web --release
+           
+            - name: Upload Web Build Files
+              uses: actions/upload-artifact@v3
+              with:
+                name: web-release
+                path: ./build/web
+  push:
+        name: Push changes to deployment repo
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Pushes to deployment repository (Portfolio)
+              uses: cpina/github-action-push-to-another-repository@main
+              env:
+                API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+              with:
+                source-directory: ./build/web
+                user-name: 'TESLA2402'
+                destination-github-username: 'TESLA2402'
+                destination-repository-name: 'Portfolio'
+                target-branch: main
+                commit-message: ":rocket: deploy"
