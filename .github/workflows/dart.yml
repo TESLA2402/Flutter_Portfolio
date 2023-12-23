@@ -53,7 +53,7 @@ jobs:
           destination-github-username: 'TESLA2402'
           destination-repository-name: 'Portfolio'
           target-branch: main
-          commit-message: ":rocket: deploy:"
+          commit-message: ":rocket: deploy"
       # - name: Copy Build Files to Deployment Repository
       #   run: |
       #     mkdir deployment
@@ -83,6 +83,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: "12.x"
+        cache: gradle
+    - uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+        cache: true
+    
+    - name: Get dependencies
+      run: flutter pub get
+
+    - name: Start Web Release Build
+      run: flutter build web --release
+   
+    - name: Upload Web Build Files
+      uses: actions/upload-artifact@v3
+      with:
+        name: web-release
+        path: ./build/web
     - name: Download Web Release
       uses: actions/download-artifact@v4
       with:
