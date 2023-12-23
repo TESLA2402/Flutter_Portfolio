@@ -42,7 +42,18 @@ jobs:
         with:
           name: web-release
           path: ./build/web
-          
+
+      - name: Pushes to deployment repository (Portfolio)
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: ./build/web
+          user-name: 'TESLA2402'
+          destination-github-username: 'TESLA2402'
+          destination-repository-name: 'Portfolio'
+          target-branch: main
+          commit-message: ":rocket: deploy:"
       # - name: Copy Build Files to Deployment Repository
       #   run: |
       #     mkdir deployment
