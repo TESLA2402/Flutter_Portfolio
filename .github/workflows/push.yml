@@ -37,11 +37,6 @@ jobs:
               with:
                 name: web-release
                 path: ./build/web
-  push:
-        name: Push changes to deployment repo
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
             - name: Pushes to deployment repository (Portfolio)
               uses: cpina/github-action-push-to-another-repository@main
               env:
