@@ -79,6 +79,7 @@ jobs:
   re-build:
       name: Re-create Web Build
       permissions: write-all
+      needs: build
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v4
@@ -106,7 +107,7 @@ jobs:
   deploy:
     name: Deploy Web Build
     permissions: write-all
-    needs: build
+    needs: re-build
     runs-on: ubuntu-latest
 
     steps:
