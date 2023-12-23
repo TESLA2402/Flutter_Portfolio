@@ -5,8 +5,8 @@ const CACHE_NAME = 'flutter-app-cache';
 
 const RESOURCES = {"flutter.js": "7d69e653079438abfbb24b82a655b0a4",
 "manifest.json": "4d2a074e955647542596586cbde41715",
-"index.html": "7ddb99c12bd2a7b709131830509102ed",
-"/": "7ddb99c12bd2a7b709131830509102ed",
+"index.html": "367f62de7dbadf1708f6949f5f4ff7f9",
+"/": "367f62de7dbadf1708f6949f5f4ff7f9",
 "assets/AssetManifest.bin": "6944e3f022ab61ad387afaaa36fd5a07",
 "assets/fonts/MaterialIcons-Regular.otf": "9567aba7ce5bad5106b305ed4832e2b1",
 "assets/assets/pdf/resume.pdf": "a2c28d243793d2514fad5cfb25642f2d",
