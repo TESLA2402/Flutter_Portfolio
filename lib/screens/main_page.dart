@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/constants/color.dart';
+import 'package:flutter_portfolio/services/switch_screens.dart';
 import 'package:flutter_portfolio/models/profile_model.dart';
 import 'package:flutter_portfolio/screens/contact/contact_page.dart';
 import 'package:flutter_portfolio/screens/home/home_page.dart';
 import 'package:flutter_portfolio/screens/project/project_screen.dart';
 import 'package:flutter_portfolio/screens/resume/resume_page.dart';
 import 'package:flutter_portfolio/services/launcher_services.dart';
+import 'package:flutter_portfolio/utils/navigation_button.dart';
 import 'package:flutter_portfolio/utils/side_info_card.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -17,37 +19,10 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  String page = "Home";
-  String nameText = "ラクシャイ・アラワット";
   @override
   Widget build(BuildContext context) {
     Launcher launcher = Launcher();
     return Scaffold(
-        // appBar: AppBar(
-        //   title: Align(
-        //     alignment: Alignment.centerLeft,
-        //     child: MouseRegion(
-        //       onEnter: (event) {
-        //         setState(() {
-        //           nameText = "Lakshay Ahlawat";
-        //         });
-        //       },
-        //       onExit: (event) {
-        //         setState(() {
-        //           nameText = "ラクシャイ・アラワット";
-        //         });
-        //       },
-        //       child: Text(
-        //         nameText,
-        //         style: const TextStyle(
-        //             color: Colors.white,
-        //             fontWeight: FontWeight.w800,
-        //             fontSize: 24),
-        //       ),
-        //     ),
-        //   ),
-        //   backgroundColor: Colors.black,
-        // ),
         backgroundColor: Colors.black,
         body: Padding(
           padding: ResponsiveBreakpoints.of(context).isMobile
@@ -160,7 +135,10 @@ class _MainPageState extends State<MainPage> {
                                 const SizedBox(
                                   width: 16,
                                 ),
-                                page == "Resume"
+                                context
+                                            .watch<NavigationViewModel>()
+                                            .screenIndex ==
+                                        2
                                     ? GestureDetector(
                                         onTap: () {
                                           launcher.openSocials(
@@ -180,7 +158,10 @@ class _MainPageState extends State<MainPage> {
                                           child: Row(
                                             children: [
                                               Text(
-                                                page,
+                                                context
+                                                    .watch<
+                                                        NavigationViewModel>()
+                                                    .screenName,
                                                 style: const TextStyle(
                                                     color: Colors.blue,
                                                     fontWeight: FontWeight.w800,
@@ -198,7 +179,9 @@ class _MainPageState extends State<MainPage> {
                                         ),
                                       )
                                     : Text(
-                                        page,
+                                        context
+                                            .watch<NavigationViewModel>()
+                                            .screenName,
                                         style: const TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.w800,
@@ -207,201 +190,34 @@ class _MainPageState extends State<MainPage> {
                                 const Spacer(),
                                 Container(
                                   padding: const EdgeInsets.only(
-                                      top: 12, bottom: 12, left: 48, right: 48),
+                                      top: 12, bottom: 12, left: 48),
                                   decoration: BoxDecoration(
                                       borderRadius: const BorderRadius.only(
                                           bottomLeft: Radius.circular(8),
                                           topRight: Radius.circular(8)),
                                       color: Colors.white.withOpacity(0.25)),
-                                  child: Row(
+                                  child: const Row(
                                     children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            page = "Home";
-                                          });
-                                        },
-                                        child: page == "Home"
-                                            ? ShaderMask(
-                                                blendMode: BlendMode.srcIn,
-                                                shaderCallback: (bounds) =>
-                                                    AppColors.gradient
-                                                        .createShader(
-                                                  Rect.fromLTWH(
-                                                      0,
-                                                      0,
-                                                      bounds.width,
-                                                      bounds.height),
-                                                ),
-                                                child: const Text(
-                                                  "Home",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w200,
-                                                      fontSize: 16),
-                                                ),
-                                              )
-                                            : const Text(
-                                                "Home",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w200,
-                                                    fontSize: 16),
-                                              ),
+                                      NavigationButton(
+                                        index: 0,
+                                        title: "Home",
                                       ),
-                                      const SizedBox(
-                                        width: 48,
+                                      NavigationButton(
+                                        index: 1,
+                                        title: "Projects",
                                       ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            page = "Resume";
-                                          });
-                                        },
-                                        child: page == "Resume"
-                                            ? ShaderMask(
-                                                blendMode: BlendMode.srcIn,
-                                                shaderCallback: (bounds) =>
-                                                    AppColors.gradient
-                                                        .createShader(
-                                                  Rect.fromLTWH(
-                                                      0,
-                                                      0,
-                                                      bounds.width,
-                                                      bounds.height),
-                                                ),
-                                                child: const Text(
-                                                  "Resume",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w200,
-                                                      fontSize: 16),
-                                                ),
-                                              )
-                                            : const Text(
-                                                "Resume",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w200,
-                                                    fontSize: 16),
-                                              ),
+                                      NavigationButton(
+                                        index: 2,
+                                        title: "Resume",
                                       ),
-                                      const SizedBox(
-                                        width: 48,
+                                      NavigationButton(
+                                        index: 3,
+                                        title: "Contact",
                                       ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            page = "Projects";
-                                          });
-                                        },
-                                        child: page == "Projects"
-                                            ? ShaderMask(
-                                                blendMode: BlendMode.srcIn,
-                                                shaderCallback: (bounds) =>
-                                                    AppColors.gradient
-                                                        .createShader(
-                                                  Rect.fromLTWH(
-                                                      0,
-                                                      0,
-                                                      bounds.width,
-                                                      bounds.height),
-                                                ),
-                                                child: const Text(
-                                                  "Projects",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w200,
-                                                      fontSize: 16),
-                                                ),
-                                              )
-                                            : const Text(
-                                                "Projects",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w200,
-                                                    fontSize: 16),
-                                              ),
-                                      ),
-                                      const SizedBox(
-                                        width: 48,
-                                      ),
-                                      // GestureDetector(
-                                      //   onTap: () {
-                                      //     setState(() {
-                                      //       page = "Experiences";
-                                      //     });
-                                      //   },
-                                      //   child: page == "Experiences"
-                                      //       ? ShaderMask(
-                                      //           blendMode: BlendMode.srcIn,
-                                      //           shaderCallback: (bounds) =>
-                                      //               AppColors.gradient
-                                      //                   .createShader(
-                                      //             Rect.fromLTWH(
-                                      //                 0,
-                                      //                 0,
-                                      //                 bounds.width,
-                                      //                 bounds.height),
-                                      //           ),
-                                      //           child: const Text(
-                                      //             "Experiences",
-                                      //             style: TextStyle(
-                                      //                 color: Colors.white,
-                                      //                 fontWeight:
-                                      //                     FontWeight.w200,
-                                      //                 fontSize: 16),
-                                      //           ),
-                                      //         )
-                                      //       : const Text(
-                                      //           "Experiences",
-                                      //           style: TextStyle(
-                                      //               color: Colors.white,
-                                      //               fontWeight: FontWeight.w200,
-                                      //               fontSize: 16),
-                                      //         ),
+                                      // NavigationButton(
+                                      //   index: 4,
+                                      //   title: "Experiences",
                                       // ),
-                                      // const SizedBox(
-                                      //   width: 48,
-                                      // ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            page = "Contact";
-                                          });
-                                        },
-                                        child: page == "Contact"
-                                            ? ShaderMask(
-                                                blendMode: BlendMode.srcIn,
-                                                shaderCallback: (bounds) =>
-                                                    AppColors.gradient
-                                                        .createShader(
-                                                  Rect.fromLTWH(
-                                                      0,
-                                                      0,
-                                                      bounds.width,
-                                                      bounds.height),
-                                                ),
-                                                child: const Text(
-                                                  "Contact",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w200,
-                                                      fontSize: 16),
-                                                ),
-                                              )
-                                            : const Text(
-                                                "Contact",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w200,
-                                                    fontSize: 16),
-                                              ),
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -410,17 +226,24 @@ class _MainPageState extends State<MainPage> {
                             const SizedBox(
                               height: 24,
                             ),
-                            page == "Projects"
-                                ? const ProjectScreen()
-                                : Container(),
-                            page == "Home" ? const HomePage() : Container(),
-                            page == "Resume" ? const ResumePage() : Container(),
-                            page == "Contact"
-                                ? const ContactPage()
-                                : Container(),
-                            // page == "Experiences"
-                            //     ? const ExperienceScreen()
-                            //     : Container(),
+                            Consumer<NavigationViewModel>(
+                              builder: (context, viewModel, _) {
+                                switch (viewModel.screenIndex) {
+                                  case 0:
+                                    return const HomePage();
+                                  case 1:
+                                    return const ProjectScreen();
+                                  case 2:
+                                    return const ResumePage();
+                                  case 3:
+                                    return const ContactPage();
+                                  // case 4:
+                                  //   return const ExperienceScreen();
+                                  default:
+                                    return Container();
+                                }
+                              },
+                            ),
                           ]),
                         ),
                       ),

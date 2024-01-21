@@ -3,6 +3,7 @@ import 'package:flutter_portfolio/constants/color.dart';
 import 'package:flutter_portfolio/services/launcher_services.dart';
 import 'package:flutter_portfolio/utils/tag_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class ProjectCard extends StatelessWidget {
   final String title;
@@ -32,12 +33,14 @@ class ProjectCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: Colors.black.withOpacity(0.8),
-            boxShadow: const [
-              BoxShadow(
-                  color: Colors.white,
-                  spreadRadius: 0,
-                  blurRadius: 5,
-                  blurStyle: BlurStyle.solid)
+            boxShadow: [
+              ResponsiveBreakpoints.of(context).isMobile
+                  ? const BoxShadow()
+                  : const BoxShadow(
+                      color: Colors.white,
+                      spreadRadius: 0,
+                      blurRadius: 5,
+                      blurStyle: BlurStyle.solid)
             ],
           ),
           child: SingleChildScrollView(
