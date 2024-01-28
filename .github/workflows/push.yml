@@ -47,4 +47,4 @@ jobs:
                 destination-github-username: 'TESLA2402'
                 destination-repository-name: 'Portfolio'
                 target-branch: main
-                commit-message: ":rocket: deploy"
+                commit-message: ":rocket: deploy commit : ${{ github.event.commits[0].message }}"
