@@ -28,10 +28,12 @@ class _HomePageState extends State<HomePage> {
   generateQuote() async {
     var res = await http.get(Uri.parse(quoteURL));
     var result = jsonDecode(res.body);
-    setState(() {
-      quote = result["content"];
-      author = result["author"];
-    });
+    if (mounted) {
+      setState(() {
+        quote = result["content"];
+        author = result["author"];
+      });
+    }
   }
 
   @override

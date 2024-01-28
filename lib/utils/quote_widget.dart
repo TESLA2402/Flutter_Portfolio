@@ -24,10 +24,12 @@ class _QuoteWidgetState extends State<QuoteWidget> {
   generateQuote() async {
     var res = await http.get(Uri.parse(quoteURL));
     var result = jsonDecode(res.body);
-    setState(() {
-      quote = result["content"];
-      author = result["author"];
-    });
+    if (mounted) {
+      setState(() {
+        quote = result["content"];
+        author = result["author"];
+      });
+    }
   }
 
   @override

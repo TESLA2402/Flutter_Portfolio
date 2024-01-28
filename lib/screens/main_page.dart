@@ -157,15 +157,18 @@ class _MainPageState extends State<MainPage> {
                                                   BorderRadius.circular(20)),
                                           child: Row(
                                             children: [
-                                              Text(
-                                                context
-                                                    .watch<
-                                                        NavigationViewModel>()
-                                                    .screenName,
-                                                style: const TextStyle(
-                                                    color: Colors.blue,
-                                                    fontWeight: FontWeight.w800,
-                                                    fontSize: 24),
+                                              SelectionContainer.disabled(
+                                                child: Text(
+                                                  context
+                                                      .watch<
+                                                          NavigationViewModel>()
+                                                      .screenName,
+                                                  style: const TextStyle(
+                                                      color: Colors.blue,
+                                                      fontWeight:
+                                                          FontWeight.w800,
+                                                      fontSize: 24),
+                                                ),
                                               ),
                                               const SizedBox(
                                                 width: 4,
@@ -178,14 +181,16 @@ class _MainPageState extends State<MainPage> {
                                           ),
                                         ),
                                       )
-                                    : Text(
-                                        context
-                                            .watch<NavigationViewModel>()
-                                            .screenName,
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w800,
-                                            fontSize: 24),
+                                    : SelectionContainer.disabled(
+                                        child: Text(
+                                          context
+                                              .watch<NavigationViewModel>()
+                                              .screenName,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w800,
+                                              fontSize: 24),
+                                        ),
                                       ),
                                 const Spacer(),
                                 Container(
