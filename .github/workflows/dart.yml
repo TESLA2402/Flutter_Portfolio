@@ -39,7 +39,7 @@ jobs:
       - name: Upload Web Build Files
         uses: actions/upload-artifact@v4
         with:
-          name: web-release-v2
+          name: web-release
           path: ./build/web
   deploy:
     name: Deploy Web Build
@@ -50,7 +50,7 @@ jobs:
     - name: Download Web Release
       uses: actions/download-artifact@v3
       with:
-        name: web-release-v2
+        name: web-release
 
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
