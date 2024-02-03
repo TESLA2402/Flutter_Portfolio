@@ -51,6 +51,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: web-release
+        path: ./build/web
 
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
