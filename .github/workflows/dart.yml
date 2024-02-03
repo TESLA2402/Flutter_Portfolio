@@ -48,10 +48,9 @@ jobs:
 
     steps:
     - name: Download Web Release
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: web-release
-        path: ./build/web
 
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
