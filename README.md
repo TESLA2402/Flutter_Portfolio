@@ -16,7 +16,7 @@ This is a portfolio website created using Flutter, a cross-platform framework fo
 - **Project Showcase:** Displaying my projects with descriptions, images, and links to their respective repositories or live demos.
 - **About Me Section:** Providing information about myself, including my skills, education, and work experience.
 - **Contact Form:** Allowing visitors to contact me directly through the website.
-- **Search engine optimization**-
+- **Search engine optimization:**
   - Implemented :
     - Open Graph tags
     - Twitter cards
