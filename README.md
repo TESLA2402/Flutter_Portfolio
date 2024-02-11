@@ -27,14 +27,6 @@ This is a portfolio website created using Flutter, a cross-platform framework fo
   - Project Page
   - Resume Page
   - Contact Page
-</ul>
-
-## Search engine optimization
-- Implemented :
-  - Open Graph tags
-  - Twitter cards
-  - WhatsApp-specific metadata
-  - Discord-specific metadata
 
 ## TechStack Used
 - Flutter
