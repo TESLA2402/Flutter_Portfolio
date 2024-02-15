@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/services/switch_screens.dart';
 import 'package:flutter_portfolio/screens/main_page.dart';
-import 'package:flutter_portfolio/utils/web.dart';
+// import 'package:flutter_portfolio/utils/web.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
-  preventRightClick();
+  // preventRightClick();
   runApp(const MyApp());
 }
 
