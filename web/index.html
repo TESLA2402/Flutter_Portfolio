@@ -148,10 +148,7 @@
         }
       }).then(function (engineInitializer) {
         loading.classList.add('main_done');
-         let config = {
-          renderer: "canvaskit",
-        };
-        return engineInitializer.initializeEngine(config);
+        return engineInitializer.initializeEngine();
       }).then(function (appRunner) {
         loading.classList.add('init_done');
         return appRunner.runApp();
