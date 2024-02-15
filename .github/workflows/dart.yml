@@ -14,50 +14,50 @@ on:
 
   workflow_dispatch:
 
-# jobs:
-#   buildv2:
-#     name: Create Web Build
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#       - uses: actions/setup-java@v4
-#         with:
-#           distribution: 'zulu'
-#           java-version: "12.x"
-#           cache: gradle
-#       - uses: subosito/flutter-action@v2
-#         with:
-#           channel: 'stable'
-#           cache: true
+jobs:
+  buildv2:
+    name: Create Web Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: "12.x"
+          cache: gradle
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
           
-#       - name: Flutter clean
-#         run: flutter clean
+      - name: Flutter clean
+        run: flutter clean
       
-#       - name: Get dependencies
-#         run: flutter pub get
+      - name: Get dependencies
+        run: flutter pub get
 
-#       - name: Start Web Release Build
-#         run: flutter build web --release
+      - name: Start Web Release Build
+        run: flutter build web --release
      
-#       - name: Upload Web Build Files
-#         uses: actions/upload-artifact@v4
-#         with:
-#           name: web-release-v2
-#           path: ./build/web
-#   deploy:
-#     name: Deploy Web Build
-#     needs: buildv2
-#     runs-on: ubuntu-latest
+      - name: Upload Web Build Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-release-v2
+          path: ./build/web
+  deploy:
+    name: Deploy Web Build
+    needs: buildv2
+    runs-on: ubuntu-latest
 
-#     steps:
-#     - name: Download Web Release
-#       uses: actions/download-artifact@v4
-#       with:
-#         name: web-release-v2
+    steps:
+    - name: Download Web Release
+      uses: actions/download-artifact@v4
+      with:
+        name: web-release-v2
 
-#     - name: Deploy to gh-pages
-#       uses: peaceiris/actions-gh-pages@v3
-#       with:
-#         github_token: ${{ secrets.GITHUB_TOKEN }}
-#         publish_dir: ./
-#         commit_message: ":rocket: deploy:"
+    - name: Deploy to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        commit_message: ":rocket: deploy:"
