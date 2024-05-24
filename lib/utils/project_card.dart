@@ -3,7 +3,7 @@ import 'package:flutter_portfolio/constants/color.dart';
 import 'package:flutter_portfolio/services/launcher_services.dart';
 import 'package:flutter_portfolio/utils/tag_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class ProjectCard extends StatelessWidget {
   final String title;
