@@ -268,10 +268,10 @@ packages:
     dependency: "direct main"
     description:
       name: pdf_render
-      sha256: "29d99b0afb3faa6e63e2655bc71186313e0e01a44811e4feb7fb211dd79b1f54"
+      sha256: "51b588a5e52e416a4f7fe5c8d9842b13edb234508d5572d574e7a7c37ea09d95"
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.8"
+    version: "1.4.10"
   platform:
     dependency: transitive
     description:
