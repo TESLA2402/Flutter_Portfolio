@@ -38,7 +38,7 @@ dependencies:
   google_fonts: ^6.2.1
   font_awesome_flutter: ^10.7.0
   url_launcher: ^6.3.0
-  pdf_render: ^1.4.8
+  pdf_render: ^1.4.10
   animated_text_kit: ^4.2.2
   http: ^1.2.0
   responsive_framework: ^1.1.1
