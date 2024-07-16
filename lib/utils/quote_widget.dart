@@ -18,7 +18,7 @@ class _QuoteWidgetState extends State<QuoteWidget> {
   @override
   void initState() {
     super.initState();
-    generateQuote();
+    // generateQuote();
   }
 
   generateQuote() async {
