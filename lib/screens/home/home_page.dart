@@ -22,11 +22,17 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    generateQuote();
+    // generateQuote();
   }
 
   generateQuote() async {
     var res = await http.get(Uri.parse(quoteURL));
+    // var result;
+    // if (res.statusCode == 200) {
+    //   result = jsonDecode(res.body);
+    // } else {
+    //   throw Exception('Failed to load quote details');
+    // }
     var result = jsonDecode(res.body);
     if (mounted) {
       setState(() {

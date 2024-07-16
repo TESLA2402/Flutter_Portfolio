@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/models/project_model.dart';
+import 'package:flutter_portfolio/services/switch_screens.dart';
 import 'package:flutter_portfolio/utils/project_card.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class ProjectScreen extends StatelessWidget {
@@ -8,11 +10,13 @@ class ProjectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Project> githubList =
+        context.read<NavigationViewModel>().screenGithubProjectList;
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
-          itemCount: projectList.length,
+          itemCount: githubList.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: ResponsiveBreakpoints.of(context).isMobile
                   ? 1
@@ -30,11 +34,11 @@ class ProjectScreen extends StatelessWidget {
                   ? const EdgeInsets.all(4.0)
                   : const EdgeInsets.all(8.0),
               child: ProjectCard(
-                title: projectList[index].name,
-                description: projectList[index].description,
-                url: projectList[index].link,
-                stars: projectList[index].stars!,
-                tags: projectList[index].tags!,
+                title: githubList[index].name,
+                description: githubList[index].description,
+                url: githubList[index].link,
+                stars: githubList[index].stars!,
+                tags: githubList[index].tags!,
               ),
             );
           },

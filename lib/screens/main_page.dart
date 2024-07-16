@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/models/project_model.dart';
+import 'package:flutter_portfolio/services/fetch_github_details.dart';
 import 'package:flutter_portfolio/services/switch_screens.dart';
 import 'package:flutter_portfolio/models/profile_model.dart';
 import 'package:flutter_portfolio/screens/contact/contact_page.dart';
@@ -19,6 +21,37 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  @override
+  void initState() {
+    super.initState();
+    githubRepoDetails();
+  }
+
+  void githubRepoDetails() async {
+    FetchGithubDetails fetchGithubDetails = FetchGithubDetails();
+    var details = await fetchGithubDetails
+        .fetchGithubDetails(personalInfo.githubUsername);
+    List<dynamic> detailsList = details as List<dynamic>;
+    List<Project> githubProjectList = [];
+    for (var detail in detailsList) {
+      List<dynamic> tags = (detail["topics"] ?? []) as List<dynamic>;
+      List<String> finalTags = tags.map((item) => item.toString()).toList();
+      if ((detail["description"] ?? "") != "" && !detail["fork"]) {
+        githubProjectList.add(Project(
+          name: detail["name"] ?? "",
+          description: detail["description"] ?? "",
+          image: "image",
+          link: (detail["html_url"] ?? "") as String,
+          tags: finalTags,
+          stars: (detail["stargazers_count"] ?? 0) as int,
+        ));
+      }
+    }
+    // print(githubProjectList);
+    context.read<NavigationViewModel>().screenGithubProjectList =
+        githubProjectList;
+  }
+
   @override
   Widget build(BuildContext context) {
     Launcher launcher = Launcher();
